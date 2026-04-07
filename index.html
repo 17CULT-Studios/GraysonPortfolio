@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grayson's Portfolio</title>
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="/Images/CHAOCATS-Logo.webp">
+    <style>
+        body {
+            background-color: #000080;
+            margin: 0;
+            padding: 40px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        model-viewer {
+            width:100%;
+            height: 100%;
+            display:block;
+            background-color:#1a1a1a
+        }
+        .card-list {
+            max-width: 1500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .card-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 25px;
+            padding: 10px;
+        }
+
+        .media-box {
+            flex-shrink: 0;
+            width: 850px;
+            height: 500px;
+            background-color: #414141;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 4px;
+            color: #222;
+            font-weight: bold;
+            overflow: hidden; 
+        }
+
+        .media-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+
+        .media-box iframe {
+            width:100%;
+            height:100%;
+            border:none;
+            display:block;
+        }
+
+        .content-box {
+            color: #ffffff;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            flex:1;
+            min-width:0;
+            word-wrap:break-word;
+            overflow-wrap: break-word;
+        }
+
+        .construction-txt{
+            font-size: 60px;      
+            color: #fffb00;
+            text-align: center;
+            margin-top:10px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 600px) {
+            .card-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .media-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--<h3 class="construction-txt">Website Under Construction</h3>-->
+    <div class="card-list">
+
+        <div class="card-item">
+            <div class="media-box">
+                <img src="/Images/FeedingRoom.png"><!--feeding room-->
+            </div>
+            <div class="content-box">
+                <h3>FeedingRoom</h3>
+                <p>Grey blocked level, done for college capstone project and modeled in 3ds max.</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="media-box">
+                <img src="/Images/ObservationRoom.png"><!--observation room-->
+            </div>
+            <div class="content-box">
+                <h3>Observation Room</h3>
+                <p>Grey blocked level, done for college capstone project and modeled in 3ds max.</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="media-box">
+                <img src="/Images/Level_Overview.png"><!--level overview-->
+            </div>
+            <div class="content-box">
+                <h3>Level Overview</h3>
+                <p>Grey blocked level, done for college capstone project and modeled in 3ds max.</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="media-box">
+                <video autoplay muted loop playsinline width="1000" height="1000">
+                    <source src="/Images/PushAnimation.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="content-box">
+                <h3>Push Animation</h3>
+                <p>done for a college assignment and animated in 3ds max</p>
+            </div>
+        </div>
+
+        
+
+        <div class="card-item">
+            <div class="media-box">
+                <video autoplay muted loop playsinline width="1000" height="1000">
+                    <source src="/Images/JumpingAnimation.mp4" type="video/mp4">
+                </video>
+            </div>
+            <div class="content-box">
+                <h3>Jumping Animation</h3>
+                <p>done for a college assignment and animated in 3ds max</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="media-box">
+                <img src="/Images/Bobble_Render.png"><!--bobble-->
+            </div>
+            <div class="content-box">
+                <h3>Bobble Enemy</h3>
+                <p>done for college capstone project, modeled in 3ds max and textured in substance painter.</p>
+            </div>
+        </div>
+
+        <div class="card-item">
+            <div class="media-box">
+                <img src="/Images/Shroom_Render.png"><!--shroom-->
+            </div>
+            <div class="content-box">
+                <h3>Shroom Enemy</h3>
+                <p>done for college capstone project, modeled in 3ds max and textured in substance painter.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const iframes = document.querySelectorAll('.sketchfab-iframe');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                const iframe = entry.target;
+                const dataSrc = iframe.getAttribute('data-src')
+                if (entry.isIntersecting) {
+                    if(iframe.src != dataSrc){
+                        iframe.src = dataSrc
+                    }
+                } else {
+                    //unload to save webGL3d resourses
+                    iframe.src='';
+                }
+            });
+        }, { threshold: 0.1 });//percent of box needed to be visable
+        iframes.forEach(iframe => observer.observe(iframe));
+    </script>
+</body>
+</html>
